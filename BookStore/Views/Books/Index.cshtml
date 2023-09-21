@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Common.Model.BookModel>
+
+
+
+<div class="MainFrame">
+    <div class="frametitle">
+        <p class="booksmenu">Books</p>
+        <select class="sortmenu" name="sortmenu" > 
+            <option>Sort by relevance</option>
+            <option value="sortAZ">Sort by A-Z</option>
+            <option value="sortZA">Sort by Z-A</option>
+        </select>
+    </div>
+   
+    <div class="wrapper">
+      
+        @foreach (var item in Model)
+        { 
+            <a href="/Home" class="directlink" >
+                <li class="note">
+                    <div class="details">
+
+                        <img src="/images/@item.Images" />
+
+                    </div>
+                    <div class="bottom-content">
+                        <span>
+                            <p class="booktitle">@item.BookName</p>
+                            <p class="bookauth">by @item.Author</p>
+                                <div class="bookrating">
+                                    <p >4.5</p>
+                                    <i class="fa fa-star" style="font-size:8px;color:#fff"></i>
+                                </div>
+                            <p class="bookprice">Rs.&nbsp @item.Price</p>
+                        </span>
+
+                    </div>
+                </li>
+            </a>
+
+        }
+
+     
+
+    </div>
+    <div id="pagination"></div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $(".wrapper .note").slice(4).hide();
+        $('#pagination').pagination({
+
+            // Total number of items present
+            // in wrapper class
+            items: @Model.Count(),
+
+            // Items allowed on a single page
+            itemsOnPage: 4,
+            onPageClick: function (noofele) {
+                $(".wrapper .note").hide()
+                    .slice(4 * (noofele - 1),
+                        4 + 4 * (noofele - 1)).show();
+            }
+        });
+    });
+
+</script>

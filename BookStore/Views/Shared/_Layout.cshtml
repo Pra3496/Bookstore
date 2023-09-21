@@ -7,43 +7,69 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/loginstyle.css" rel="stylesheet" />
+    <link href="~/css/loginsignup.css" rel="stylesheet" />
+    <link href="~/css/bookstyle.css" rel="stylesheet" />
+    <link href="~/css/navstyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/simplePagination.min.css">
+    @RenderSection("Scripts", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header class="navHeader" style="background: #A03037 0% 0% no-repeat padding-box;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookStore</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <img src="~/images/education.png" />
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color:white; margin-left:5px;">BookStore</a>
+                <form class="form-inline search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" style="display:flex;padding:0px 400px 0px 10px;" aria-label="Search">
+                </form>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <ul class="navbar-nav flex-grow-1" style="margin: 0px 0px 0px 200px;">
+                        <li class="nav-item profilenav" style="border: 1px solid #8F2B2F;">
+                            @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>*@
+                            <button id="myBtn" class="profilebtn" onclick="shomodel()"><i class="fa fa-user" style="font-size:24px;color:white"></i></button>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item cartnav">
+                            @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+                            <button id="myBtn" class="cartbtn" onclick="shomodel()"><i class="fa fa-shopping-cart" style="font-size:24px;color:white"></i></button>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-   @* <div class="container">
+    <div class="container">
         <main role="main" class="pb-3">
+   
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <p>Welcome</p>
+                    <p class="subtext">To access account and manage orders</p>
+                    <button>Login/SignUp</button>
+                    <hr class="divline">
+                    <a href="#" class="orderbtn">My Order</a>
+                    <a href="#" class="wishbtn">Wishlist</a>
+                </div>
+
+            </div>
+            <script src="~/js/navscript.js"></script>
             @RenderBody()
         </main>
-    </div>*@
-    @RenderBody()
+    </div>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - BookStore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    
 </body>
 </html>
+

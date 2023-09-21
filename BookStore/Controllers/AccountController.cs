@@ -24,6 +24,12 @@ namespace BookStore.Controllers
             
         }
 
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public IActionResult Index(RegisterModel model)

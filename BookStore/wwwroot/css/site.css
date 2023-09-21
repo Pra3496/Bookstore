@@ -2,28 +2,48 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+.navbar {
+    background: #A03037 0% 0% no-repeat padding-box;
+    opacity: 1;
 }
+
+.search input{
+    display:flex;
+    width:80%;padding:0px 400px 0px 10px;
+}
+
+.navbar-nav {
+    margin: 0px 0px 0px 200px;
+}
+.profilenav {
+    height: 100%;
+    border: 1px solid #8F2B2F;
+    margin: 0px 30px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+
+
+
 
 .btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/*.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
+*/
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -63,9 +83,16 @@ body {
   margin-bottom: 60px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    background: #2E1D1E 0% 0% no-repeat padding-box;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background: #2E1D1E 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.navHeader{
+    
 }
