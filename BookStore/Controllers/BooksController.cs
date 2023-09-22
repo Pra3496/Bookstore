@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace BookStore.Controllers
@@ -95,7 +96,132 @@ namespace BookStore.Controllers
         [HttpGet]
         public IActionResult BookDetails(long BookId)
         {
-            return View();
+            try
+            {
+
+                var result = this.bookBussiness.GetAllBook().FirstOrDefault(x => x.BookId == BookId);
+
+                if (result != null)
+                {
+                    return View(result);
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+
+        [HttpGet]
+        public IActionResult BookEdit(long BookId)
+        {
+            try
+            {
+
+                var result = this.bookBussiness.GetAllBook().FirstOrDefault(x => x.BookId == BookId);
+
+                if (result != null)
+                {
+                    return View(result);
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult BookEdit(BookModel model)
+        {
+            try
+            {
+                if(model.UploadImages != null)
+                {
+                    model.Images = ProcessUploadedFile(model.UploadImages);
+                }
+
+                var result = this.bookBussiness.UpdateBook(model);
+
+                if (result != false)
+                {
+                    return View(result);
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        [HttpGet]
+        public IActionResult BookDelete(long BookId)
+        {
+            try
+            {
+
+                var result = this.bookBussiness.GetAllBook().FirstOrDefault(x => x.BookId == BookId);
+
+                if (result != null)
+                {
+                    return View(result);
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+
+        [HttpDelete]
+        public IActionResult BookDeleteById(long BookId)
+        {
+            try
+            {
+
+                var result = this.bookBussiness.DeleteBook(BookId);
+
+                if (result != false)
+                {
+                    return View(result);
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
 

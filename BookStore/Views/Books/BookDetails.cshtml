@@ -3,58 +3,63 @@
 @{
     ViewData["Title"] = "BookDetails";
 }
-
-<h1>BookDetails</h1>
-
-<div>
-    <h4>BookModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BookId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BookId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BookName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BookName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Details)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Details)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Images)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Images)
-        </dd>
-    </dl>
+<div class="detailhead">
+    <a class="detailPrvTab" href="index">Home</a>
+    <p>/</p>
+    <a class="detailCurrTab" href="BookDetails">Book</a>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+<div class="DetailMain">
+
+   <div class="detailImageBox">
+        <div class="sideIMGSamleFirt">
+            <img src="/images/@Model.Images" />
+        </div>
+        <div class="sideIMGSamleSec">
+            <img src="/images/@Model.Images" />
+        </div>
+   </div>
+
+    <div class="detailLeft">
+        <div class="detailImg"><img src="/images/@Model.Images" /></div>
+        <button class="detailNotify">Notify</button>
+        <button class="detailWishlist"><i class="fa fa-heart" style="font-size:15px"></i>Wishlist</button>
+    </div>
+    <div class="detailright">
+        <div class="detailcontent">
+            <span>
+                <p class="detailbooktitle">@Model.BookName</p>
+                <p class="detailbookauth">by @Model.Author</p>
+                <div class="detailbookrating">
+                    <p>4.5</p>
+                    <i class="fa fa-star" style="font-size:8px;color:#fff"></i>
+                </div>
+                <p class="detailbookprice">Rs.&nbsp @Model.Price</p>
+            </span>
+
+        </div>
+        <hr>
+        <div class="detailBookDetail">
+            <p class="detailBookDetailhead">Book Detail</p>
+            <p class="detailBookDetailcont">@Model.Details</p>
+        </div>
+        <hr>
+        <div class="detailCustomerFeed">
+            <p class="detailCustomerFeedHed" >Customer Feedback</p>
+            <div class="detailreviewCont">
+                <p>Overall rating</p>
+                <div class="detailsRatingStar">
+                    <i class="fa fa-star" style="font-size:19px;color:yellow"></i>
+                    <i class="fa fa-star" style="font-size:19px;color:yellow"></i>
+                    <i class="fa fa-star" style="font-size:19px;color:yellow"></i>
+                    <i class="fa fa-star" style="font-size:19px;color:yellow"></i>
+                    <i class="fa fa-star" style="font-size:19px;color:yellow"></i>
+                </div>
+                <input type="text" class="detailReviwInput" placeholder="write your review" />
+                <button>Submit</button>
+            </div>
+        </div>
+      
+    </div>
+
+
 </div>

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 using System.Text;
 
 namespace Repository.Service
@@ -40,17 +41,17 @@ namespace Repository.Service
             try
             {
                 Connection();
-                SqlCommand cmd = new SqlCommand("spAddingNewDataBooks", connection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookName", model.BookName);
-                cmd.Parameters.AddWithValue("@Author", model.Author);
-                cmd.Parameters.AddWithValue("@Details", model.Details);
-                cmd.Parameters.AddWithValue("@Price", model.Price);
-                cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
-                cmd.Parameters.AddWithValue("@Images", model.Images);
+                SqlCommand sqlCommand = new SqlCommand("spAddingNewDataBooks", connection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@BookName", model.BookName);
+                sqlCommand.Parameters.AddWithValue("@Author", model.Author);
+                sqlCommand.Parameters.AddWithValue("@Details", model.Details);
+                sqlCommand.Parameters.AddWithValue("@Price", model.Price);
+                sqlCommand.Parameters.AddWithValue("@Quantity", model.Quantity);
+                sqlCommand.Parameters.AddWithValue("@Images", model.Images);
 
                 connection.Open();
-                int i = cmd.ExecuteNonQuery();
+                int i = sqlCommand.ExecuteNonQuery();
                 connection.Close();
                 if (i <= 1)
                     return model;
@@ -71,15 +72,15 @@ namespace Repository.Service
         public IEnumerable<BookModel> GetAllBook()
         {
 
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            
             try
             {
+                Connection();
                 List<BookModel> BookList = new List<BookModel>();
 
-                using (sqlConnection)
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("spRetriveBooks", sqlConnection);
+              
+                    connection.Open();
+                    SqlCommand sqlCommand = new SqlCommand("spRetriveBooks", connection);
 
                     sqlCommand.CommandType = CommandType.StoredProcedure;
                     SqlDataReader sqlReader = sqlCommand.ExecuteReader();
@@ -102,14 +103,14 @@ namespace Repository.Service
 
                             BookList.Add(model);
                         }
-
+                        connection.Close();
                         return BookList;
 
 
                     }
                     else
                     { return null; }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -117,10 +118,83 @@ namespace Repository.Service
             }
             finally
             {
-                sqlConnection.Close();
+                connection.Close();
             }
         }
 
+
+        public bool UpdateBook(BookModel model)
+        {
+            
+
+            try
+            {
+                Connection();
+                connection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand("spUpdateBookDeatils", connection);
+                    
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@BookId", model.BookId);
+                    sqlCommand.Parameters.AddWithValue("@BookName", model.BookName);
+                    sqlCommand.Parameters.AddWithValue("@Author", model.Author);
+                    sqlCommand.Parameters.AddWithValue("@Details", model.Details);
+                    sqlCommand.Parameters.AddWithValue("@Price", model.Price);
+                    sqlCommand.Parameters.AddWithValue("@Quantity", model.Quantity);
+                    sqlCommand.Parameters.AddWithValue("@Images", model.Images);
+
+                    int result = sqlCommand.ExecuteNonQuery();
+
+                connection.Close();
+                if (result >= 1)
+                {
+                    return true;
+                }
+                else { return false; } 
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+        }
+
+        public bool DeleteBook(long BookId)
+        {
+            
+            try
+            {
+                Connection();
+                connection.Open();
+                    SqlCommand sqlCommand = new SqlCommand("spDeleteBook", connection);
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@BookId", BookId);
+                    int result = sqlCommand.ExecuteNonQuery();
+                    connection.Close();
+
+                    if (result >= 1)
+                    {
+                        return true;
+                    }
+                    else { return false; }
+               
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+
+        }
 
 
 

@@ -1,54 +1,59 @@
-﻿@model Common.Model.RegisterModel
+﻿@model IEnumerable<Common.Model.RegisterModel>
 
-
-
-<div class="main-container">
-    <div class="left-content d-sm-none d-md-block">
-        <img src="https://public-v2links.adobecc.com/d096df37-ca37-4026-553f-8cfa6bec09ec/component?params=component_id%3Afd1a0f72-85bb-467c-9057-6bfc4d749b25&params=version%3A0&token=1695026401_da39a3ee_d5cea43ee81ff5dd60d5cca878bc54920d4a550a&api_key=CometServer1"
-             alt="" />
-        <h1>ONLINE BOOK SHOPPING</h1>
-    </div>
-    <div class="right-content">
-      <form asp-action="Index">
-        <div class="right-form">
-             <div class="sign">
-                <div class="text ">
-                        <a href="/Account/login" style="color:#878787">LOGIN</a>
-                    </div>
-                <div class="text active">
-                    <a href="/Account/index">SIGNUP</a>   
-                </div>
-            </div>
-            <div class="full-name">
-                <label for="name">FirstName</label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-                <div class="full-name">
-                    <label for="name">LastName</label>
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-            <div class="full-name">
-                    <label for="email">Email</label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="full-name">
-                    <label for="password">Password</label>
-                    <input asp-for="Password"  class="form-control"/>
-                    <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="submitbtn">
-                    <button class="sbtn" type="submit" asp-action="index" >SignUp</button>
-            </div>
-        
-
-        </div>
-        </form>
-    </div>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{
+    ViewData["Title"] = "Index";
 }
+
+<h1>List Of Users</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "UpdateUser", new { UserId=item.UserId }) |
+                    @Html.ActionLink("Details", "UserDetails", new { UserId=item.UserId  }) |
+                    @Html.ActionLink("Delete", "DeleteUser", new { UserId=item.UserId  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

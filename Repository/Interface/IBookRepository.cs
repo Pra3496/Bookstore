@@ -10,5 +10,10 @@ namespace Repository.Interface
         public BookModel AddBook(BookModel model);
 
         public IEnumerable<BookModel> GetAllBook();
+
+
+        public bool UpdateBook(BookModel model);
+
+        public bool DeleteBook(long BookId);
     }
 }

@@ -42,5 +42,29 @@ namespace Bussiness.Service
             }
         }
 
+
+        public bool UpdateBook(BookModel model)
+        {
+            try
+            {
+                return this.bookRepository.UpdateBook(model);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool DeleteBook(long BookId)
+        {
+            try
+            {
+                return this.bookRepository.DeleteBook(BookId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

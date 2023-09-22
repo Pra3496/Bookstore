@@ -15,8 +15,8 @@
     <div class="wrapper">
       
         @foreach (var item in Model)
-        { 
-            <a href="/Home" class="directlink" >
+        {
+            <a href="/Books/BookDetails?BookId=@item.BookId" class="directlink">
                 <li class="note">
                     <div class="details">
 
@@ -28,7 +28,7 @@
                             <p class="booktitle">@item.BookName</p>
                             <p class="bookauth">by @item.Author</p>
                                 <div class="bookrating">
-                                    <p >4.5</p>
+                                    <p>4.5</p>
                                     <i class="fa fa-star" style="font-size:8px;color:#fff"></i>
                                 </div>
                             <p class="bookprice">Rs.&nbsp @item.Price</p>

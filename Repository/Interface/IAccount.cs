@@ -8,5 +8,11 @@ namespace Repository.Interface
     public interface IAccount
     {
         public RegisterModel RegisterUser(RegisterModel model);
+
+        public IEnumerable<RegisterModel> GetAllUsers();
+
+        public bool UpdateUserDetails(RegisterModel model);
+
+        public bool DeleteUser(long UserId);
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Text;
 
 namespace Repository.Service
@@ -40,15 +41,15 @@ namespace Repository.Service
             try
             {
                 Connection();
-                SqlCommand cmd = new SqlCommand("spAddingNewDataUserDetails", connection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@FirstName", model.FirstName);
-                cmd.Parameters.AddWithValue("@LastName", model.LastName);
-                cmd.Parameters.AddWithValue("@Email", model.Email);
-                cmd.Parameters.AddWithValue("@Password", model.Password);
+                SqlCommand sqlCommand = new SqlCommand("spAddingNewDataUserDetails", connection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@FirstName", model.FirstName);
+                sqlCommand.Parameters.AddWithValue("@LastName", model.LastName);
+                sqlCommand.Parameters.AddWithValue("@Email", model.Email);
+                sqlCommand.Parameters.AddWithValue("@Password", model.Password);
 
                 connection.Open();
-                int i = cmd.ExecuteNonQuery();
+                int i = sqlCommand.ExecuteNonQuery();
                 connection.Close();
                 if (i <= 1)
                     return model;
@@ -65,6 +66,134 @@ namespace Repository.Service
             }
         }
 
+        public IEnumerable<RegisterModel> GetAllUsers()
+        {
+
+            
+            try
+            {
+                    Connection();
+                    List<RegisterModel> UserList = new List<RegisterModel>();
+
+                    connection.Open();
+                    SqlCommand sqlCommand = new SqlCommand("spRetriveAllUsers", connection);
+
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader sqlReader = sqlCommand.ExecuteReader();
+
+                    if (sqlReader.HasRows)
+                    {
+                        while (sqlReader.Read())
+                        {
+                            RegisterModel model = new RegisterModel();
+
+                            model.UserId = sqlReader.GetInt64(0);
+                            model.FirstName = sqlReader.GetString(1);
+                            model.LastName = sqlReader.GetString(2);
+                            model.Email = sqlReader.GetString(3);
+                            model.Password = sqlReader.GetString(4);
+
+
+
+                            UserList.Add(model);
+                        }
+                        connection.Close();
+                        return UserList;
+
+
+                    }
+                    else
+                    { return null; }
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+
+        public bool UpdateUserDetails(RegisterModel model)
+        {
+            bool flags = false;
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+
+            try
+            {
+                Connection();
+                connection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand("spUpdateUserDeatils", connection);
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@UserId", model.UserId);
+                    sqlCommand.Parameters.AddWithValue("@FirstName", model.FirstName);
+                    sqlCommand.Parameters.AddWithValue("@LastName", model.LastName);
+                    sqlCommand.Parameters.AddWithValue("@Email", model.Email);
+                    sqlCommand.Parameters.AddWithValue("@Password", model.Password);
+
+                    int result = sqlCommand.ExecuteNonQuery();
+                connection.Close();
+
+                if (result >= 1)
+                {
+                    return true;
+                }
+                else { return false; }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+        }
+
+        public bool DeleteUser(long UserId)
+        {
+            
+            try
+            {
+
+                Connection();
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand("spDeleteUser", connection);
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@UserId", UserId);
+                    int result = sqlCommand.ExecuteNonQuery();
+                    connection.Close();
+
+                    if (result >= 1)
+                    {
+                      return true;
+                    }
+                    else { return false; }
+               
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
 
 
 
