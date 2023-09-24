@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Common.Model.WishlistViewModel>
+
+
+<div class="detailhead">
+    <a class="detailPrvTab" href="index">Index</a>
+    <p>/</p>
+    <a class="detailCurrTab" href="BookDetails">My Wishlist</a>
+</div>
+<div class="WishMainContainer">
+    <div class="wishtitle"><p>My Wishlist(@Model.Count())</p></div>
+
+    @foreach (var item in Model)
+    {
+        <div class="wishMain">
+
+            <div class="wishLeft">
+
+                <div class="wishImg"><img src="/images/@item.Images" /></div>
+            </div>
+            <div class="wishright">
+                <div class="wishcontent">
+                    <span>
+                        <p class="wishbooktitle">@item.BookName</p>
+                        <p class="wishbookauth">by @item.Author</p>
+                        <p class="wishbookprice">Rs.&nbsp @item.Price</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="removeWish">
+                <a href="/Wishlist/RemoveWishlist?WishlistId=@item.WishListId" class="RemoveCartbtn"><i class="fa fa-trash" style="font-size:24px;color:#F5F5F5"></i></a>
+            </div>
+
+        </div>
+    }
+
+
+</div>

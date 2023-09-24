@@ -168,3 +168,124 @@ Begin
         Select ERROR_MESSAGE() as ErrorMessage;
     End Catch;
 End
+
+-----------------------------------------------------------------------------------------------------------------
+----------------------------------------[ Cart Table And Operations ]--------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE CartTable(
+	CartId BIGINT PRIMARY KEY IDENTITY(1,1),
+	UserId BIGINT,
+	BookId BIGINT,
+	Quantity INT,
+	IsPurchesed bit not null
+	FOREIGN KEY (UserId) REFERENCES UserDetails (UserId),
+	FOREIGN KEY (BookId) REFERENCES Books (BookId)
+
+);
+
+DROP TABLE CartTable;
+
+
+Create or Alter Procedure spAddToCart(
+	@UserId BIGINT,
+	@BookId BIGINT,
+	@Quantity INT,
+	@IsPurchesed bit
+)
+As
+Begin
+    Begin Try
+        INSERT INTO CartTable VALUES(@UserId, @BookId, @Quantity, @IsPurchesed);
+    End Try
+    Begin Catch
+        Select ERROR_MESSAGE() as ErrorMessage;
+    End Catch;
+End
+
+Create or Alter Procedure spGetAllItemFromCartWhichNotPurches(
+)
+As
+Begin
+    Begin Try
+        SELECT * FROM CartTable WHERE UserId=@UserId;
+    End Try
+    Begin Catch
+        Select ERROR_MESSAGE() as ErrorMessage;
+    End Catch;
+End
+
+Create or Alter Procedure spRemoveItemFromCartWhichNotPurches(
+	@CartId	BIGINT
+)
+As
+Begin
+    Begin Try
+        Delete FROM CartTable WHERE CartId=@CartId
+    End Try
+    Begin Catch
+        Select ERROR_MESSAGE() as ErrorMessage;
+    End Catch;
+End
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+----------------------------------------[ Wishlist Table And Operations ]--------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+
+create table WishList(
+	WishListId BIGINT IDENTITY(1,1) PRIMARY KEY,
+	UserId BIGINT,
+	BookId BIGINT,
+	FOREIGN KEY (UserId) REFERENCES [UserDetails](UserId),
+	FOREIGN KEY (BookId) REFERENCES [Books](BookId)
+);
+
+DROP TABLE WishList;
+
+Create or Alter Procedure spAddToWishList(
+	@UserId BIGINT,
+	@BookId BIGINT
+
+)
+As
+Begin
+    Begin Try
+        INSERT INTO WishList VALUES(@UserId, @BookId);
+    End Try
+    Begin Catch
+        Select ERROR_MESSAGE() as ErrorMessage;
+    End Catch;
+End
+
+Create or Alter Procedure spAddToWishListDelete(
+	@WishListId BIGINT 
+)
+As
+Begin
+    Begin Try
+        Delete FROM WishList  WHERE WishListId=@WishListId;
+    End Try
+    Begin Catch
+        Select ERROR_MESSAGE() as ErrorMessage;
+    End Catch;
+End
+
+
+Create or Alter Procedure spAddToWishListGetAll(
+)
+As
+Begin
+    Begin Try
+        SELECT * FROM WishList;
+    End Try
+    Begin Catch
+        Select ERROR_MESSAGE() as ErrorMessage;
+    End Catch;
+End
+

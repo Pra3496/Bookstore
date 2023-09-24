@@ -1,0 +1,156 @@
+﻿
+.CartMainContainer {
+    width: 780px;
+    height: auto;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 0.5px solid #DBDBDB;
+    border-radius: 1px;
+    padding:0px 0px 0px 0px;
+}
+
+.CartMain {
+    margin:10px 0px 0px 0px;
+    display: flex;
+    width: 774px;
+    height: 251px;
+  
+}
+
+
+.cartLeft {
+    flex: 0.2;
+    height: 251px;
+    text-align: center;
+    margin: 0px;
+    
+}
+
+.carttitle {
+    margin: 10px 0px 0px 30px;
+  
+}
+
+    .carttitle p {
+        font: normal normal medium 19px/22px Lato;
+        letter-spacing: 0px;
+        color: #0A0102;
+        opacity: 1;
+    }
+
+.cartImg {
+    width: 65px;
+    height: 85px;
+    margin: 60px auto auto auto;
+    padding: 0px 0px 0px 0px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    opacity: 1;
+}
+
+
+    .cartImg img {
+        width: 65px;
+        height: 85px;
+    }
+
+
+.cartright {
+    flex: 1;
+    width: 557px;
+    height: 162px;
+    padding: 10px 0px 0px 30px;
+}
+
+.cartcontent {
+    width: 557px;
+    height: 142px;
+}
+
+.cartbooktitle {
+    margin: 50px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    font: normal normal normal 14px/17px Lato;
+    letter-spacing: 0px;
+    color: #0A0102;
+    opacity: 1;
+}
+
+.cartbookauth {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    font: normal normal normal 10px/12px Lato;
+    letter-spacing: 0px;
+    color: #9D9D9D;
+    opacity: 1;
+}
+
+.cartbookprice {
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px 30px 0px;
+    font: normal normal bold 15px/18px Lato;
+    letter-spacing: 0px;
+    color: #0A0102;
+    opacity: 1;
+}
+
+.cartRemove{
+
+}
+
+.Inbtn {
+    width: 24px;
+    height: 24px;
+    padding: 0px 0px 28px 0px;
+    /* UI Properties */
+    background: #FAFAFA 0% 0% no-repeat padding-box;
+    border: 1px solid #DBDBDB;
+    opacity: 1;
+    border-radius: 100%;
+    color: #DBDBDB;
+}
+
+.inpNum {
+    width: 41px;
+    height: 24px;
+    border: 1px solid #DBDBDB;
+}
+
+.debtn {
+    width: 24px;
+    height: 24px;
+    padding: 0px 0px 28px 0px;
+    /* UI Properties */
+    background: #FAFAFA 0% 0% no-repeat padding-box;
+    border: 1px solid #DBDBDB;
+    border-radius: 100%;
+    opacity: 1;
+    color: #DBDBDB;
+}
+
+.RemoveCartbtn {
+    width: 42px;
+    height: 15px;
+    font: normal normal normal 12px/15px Lato;
+    letter-spacing: 0px;
+    color: #0A0102;
+    opacity: 1;
+    margin: 0px 0px 0px 10px;
+}
+
+.CartPlace {
+    margin: 10px 0px 0px 620px;
+    padding: 0px 0px 10px 0px;
+}
+
+    .CartPlace button {
+        margin: 0px 0px 0px 0px;
+        background: #3371B5 0% 0% no-repeat padding-box;
+        border: none;
+        opacity: 1;
+        width: 151px;
+        height: 35px;
+        font: normal normal medium 10px/17px Lato;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }

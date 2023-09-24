@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Common.Model.CartViewModel>
+
+@{
+    ViewData["Title"] = "GetAlCart";
+}
+
+<div class="detailhead">
+    <a class="detailPrvTab" href="index">Index</a>
+    <p>/</p>
+    <a class="detailCurrTab" href="BookDetails">My Cart</a>
+</div>
+<div class="CartMainContainer">
+    <div class="carttitle"><p>My Cart(@Model.Count())</p></div>
+
+    @foreach (var item in Model)
+    {
+        <div class="CartMain">
+
+            <div class="cartLeft">
+                
+                <div class="cartImg"><img src="/images/@item.Images" /></div>
+            </div>
+            <div class="cartright">
+                <div class="cartcontent">
+                    <span>
+                        <p class="cartbooktitle">@item.BookName</p>
+                        <p class="cartbookauth">by @item.Author</p>
+                        <p class="cartbookprice">Rs.&nbsp @item.Price</p>
+                        <button class="Inbtn" id="add">+</button>
+                        <input type="number" class="inpNum" id="qty" />
+                        <button class="debtn" id="minus">-</button>
+                        <a href="/Cart/DeleteCart?CartId=@item.CartId" class="RemoveCartbtn">Remove</a>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <div class="CartPlace">
+       <button class="Placebtn">Place order</button>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+

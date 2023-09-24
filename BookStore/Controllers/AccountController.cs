@@ -1,6 +1,7 @@
 ﻿using Bussiness.Interface;
 using Bussiness.Service;
 using Common.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -87,6 +88,33 @@ namespace BookStore.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+
+
+
+        [HttpPost]
+        public IActionResult Login(LoginModel model)
+        {
+            try
+            {
+                var result = this.accountBussiness.GetAllUsers().FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+
+                if (result != null)
+                {
+                    HttpContext.Session.SetString("userId", Convert.ToString(result.UserId));
+                    return RedirectToAction("Index", "Books");
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
 

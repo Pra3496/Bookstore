@@ -21,8 +21,8 @@
 
     <div class="detailLeft">
         <div class="detailImg"><img src="/images/@Model.Images" /></div>
-        <button class="detailNotify">Notify</button>
-        <button class="detailWishlist"><i class="fa fa-heart" style="font-size:15px"></i>Wishlist</button>
+        <a href="/Cart/AddToCart?BookId=@Model.BookId" class="detailNotify">Add to Bag</a>
+        <a href="/Wishlist/AddToWishlist?BookId=@Model.BookId" class="detailWishlist"><i class="fa fa-heart" style="font-size:15px"></i>Wishlist</a>
     </div>
     <div class="detailright">
         <div class="detailcontent">

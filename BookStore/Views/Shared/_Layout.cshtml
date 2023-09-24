@@ -11,6 +11,8 @@
     <link href="~/css/bookstyle.css" rel="stylesheet" />
     <link href="~/css/navstyle.css" rel="stylesheet" />
     <link href="~/css/detailstyle.css" rel="stylesheet" />
+    <link href="~/css/cartstyle.css" rel="stylesheet" />
+    <link href="~/css/wishstyle.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -35,10 +37,11 @@
                         <li class="nav-item profilenav" style="border: 1px solid #8F2B2F;">
                             @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>*@
                             <button id="myBtn" class="profilebtn" onclick="shomodel()"><i class="fa fa-user" style="font-size:24px;color:white"></i></button>
+                            
                         </li>
                         <li class="nav-item cartnav">
                             @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
-                            <button id="myBtn" class="cartbtn" onclick="shomodel()"><i class="fa fa-shopping-cart" style="font-size:24px;color:white"></i></button>
+                            <a href="/Cart/IndexCart" id="myBtn" class="cartbtn"><i class="fa fa-shopping-cart" style="font-size:24px;color:white"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -54,10 +57,12 @@
                 <div class="modal-content">
                     <p>Welcome</p>
                     <p class="subtext">To access account and manage orders</p>
-                    <button>Login/SignUp</button>
+                    <a href="Account/Login">
+                        <button>Login/SignUp</button>
+                        </a>
                     <hr class="divline">
-                    <a href="#" class="orderbtn">My Order</a>
-                    <a href="#" class="wishbtn">Wishlist</a>
+                    <a href="/Cart/IndexCart" class="orderbtn">My Order</a>
+                    <a href="/Wishlist/WishlistIndex" class="wishbtn">Wishlist</a>
                 </div>
 
             </div>
